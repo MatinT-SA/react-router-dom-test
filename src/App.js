@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Link, Route, Routes, useRoutes } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useRoutes } from 'react-router-dom'
 import { Home } from './pages/Home';
 import { Book } from './pages/Book'
 import { Contact } from './pages/Contact'
@@ -8,6 +8,7 @@ import { BookList } from './pages/BookList';
 import { NewBook } from './pages/NewBook';
 import { NotFound } from './pages/NotFound';
 import { BookLayout } from './pages/BookLayout';
+import './style.css'
 
 
 function App() {
@@ -37,11 +38,16 @@ function App() {
       <nav>
         <ul>
           {/* replace will remove that specific page from your visiting history and its use case is when for example a user has already logged in and they click back and you wanna avoid the log-in process once again for the previously logged-in user */}
-          <li><Link to="/" replace>Home</Link></li>
           {/* State property this allows you to pass data along between one link and the other but that data is not gonna show up in the URL bar and that's the real benefit of using it that it's not a part of the URL */}
-          <li><Link to="/books">Book</Link></li>
           {/* routes won't reload the page while navigating through different sections we've specified but if we want to, then we use reloadDocument property on our Link component */}
-          <li><Link to="/contact" reloadDocument>Contact</Link></li>
+          {/* <li><Link to="/" replace>Home</Link></li>
+          <li><Link to="/books">Book</Link></li>
+          <li><Link to="/contact" reloadDocument>Contact</Link></li> */}
+          {/* NavLink has the same traits of Link but the only different is that we can have className, children and style property on them and it's a good for when we wanna specify the active link on our navigation and the use case of end property is for when we don't wanna have the parent element in our routes as the active one when we are on the child component */}
+
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink end to="/books">Book</NavLink></li>
+          <li><NavLink to="/contact" reloadDocument>Contact</NavLink></li>
         </ul>
       </nav>
       <Routes>
