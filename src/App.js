@@ -3,6 +3,7 @@ import './App.css';
 import { Link, Route, Routes, useRoutes } from 'react-router-dom'
 import { Home } from './pages/Home';
 import { Book } from './pages/Book'
+import { Contact } from './pages/Contact'
 import { BookList } from './pages/BookList';
 import { NewBook } from './pages/NewBook';
 import { NotFound } from './pages/NotFound';
@@ -35,8 +36,12 @@ function App() {
 
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
+          {/* replace will remove that specific page from your visiting history and its use case is when for example a user has already logged in and they click back and you wanna avoid the log-in process once again for the previously logged-in user */}
+          <li><Link to="/" replace>Home</Link></li>
+          {/* State property this allows you to pass data along between one link and the other but that data is not gonna show up in the URL bar and that's the real benefit of using it that it's not a part of the URL */}
           <li><Link to="/books">Book</Link></li>
+          {/* routes won't reload the page while navigating through different sections we've specified but if we want to, then we use reloadDocument property on our Link component */}
+          <li><Link to="/contact" reloadDocument>Contact</Link></li>
         </ul>
       </nav>
       <Routes>
@@ -46,6 +51,7 @@ function App() {
           <Route path=":id" element={<Book />} />
           <Route path="new" element={<NewBook />} />
         </Route>
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
