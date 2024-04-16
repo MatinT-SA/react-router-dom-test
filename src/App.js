@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useRoutes } from 'react-router-dom'
 import { Home } from './pages/Home';
 import { Book } from './pages/Book'
 import { BookList } from './pages/BookList';
@@ -10,13 +10,29 @@ import { BookLayout } from './pages/BookLayout';
 
 
 function App() {
+
+  // useRoutes is a react hook which can be a different method for specifiying our routes in react-router-dom but it's less common and it's a matter of preference to make use of this method or JSX
+  // let element = useRoutes([
+  //   {
+  //     path: "/",
+  //     element: <Home />
+  //   },
+  //   {
+  //     path: "*",
+  //     element: <NotFound />
+  //   }
+  // ])
+
   return (
     <>
+      {/* {element} */}
+
       {/* having multiple Routes is good for when we have a sidebar and the sidebar shows the same thing in most pages but in some pages in might be different*/}
       {/* having hardcoded url by making use of location attribute is a good practice for some specific circumstances that we wanna make sure that we're gonna display a specific content everywhere regardless of the current url we are in */}
-      <Routes location="/books">
+      {/* <Routes location="/books">
         <Route path="/books" element={<h1>Extra Content</h1>} />
-      </Routes>
+      </Routes> */}
+
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
